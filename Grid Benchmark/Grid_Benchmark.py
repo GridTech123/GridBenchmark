@@ -154,6 +154,7 @@ while True:
                     os.startfile('benchmark.exe')
                 except:
                     os.startfile('benchmark.py')
+                rendermode = 'running'
         else:
             pygame.draw.rect(screen, blue3, [(sx / 2) - 150, 600, 300, 100])         
         screen.blit(big_font.render('RUN', True, blue2), ((sx / 2) - 75, 600))
