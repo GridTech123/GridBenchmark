@@ -173,10 +173,8 @@ while True:
                 if currentBenchmark > 0:
                     currentBenchmark = currentBenchmark - 1
                     rendermode = 'load'
-                
-        
 
-
+    if rendermode == 'running':
         pickle_in = open('update.run', 'r')
         update = pickle.load(pickle_in)
         if update == True:
