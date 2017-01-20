@@ -1,4 +1,4 @@
- #WIP
+#WIP
 -Remember that this is a work in progress and there will be more advanced benchmarks soon. We will delete the demo when thats out. <br>
 -There will be an installer in the future
 
