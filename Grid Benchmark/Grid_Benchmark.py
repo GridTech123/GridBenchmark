@@ -166,13 +166,17 @@ while True:
             if event.type == MOUSEBUTTONDOWN and event.button == 1:
                 if currentBenchmark < len(benchmarks) - 1:
                     currentBenchmark = currentBenchmark + 1
-                    rendermode = 'load'
+                    rendermode = 'loading'
+                    os.chdir('..')
+                    os.chdir('..')
         screen.blit(right, (110, sy / 2 - 45))
         if mx > 110 and mx < 110 + 90 and my > sy / 2 - 45 and my < sy / 2 - 45 + 90:
             if event.type == MOUSEBUTTONDOWN and event.button == 1:
                 if currentBenchmark > 0:
                     currentBenchmark = currentBenchmark - 1
-                    rendermode = 'load'
+                    rendermode = 'loading'
+                    os.chdir('..')
+                    os.chdir('..')
 
     if rendermode == 'running':
         pickle_in = open('update.run', 'r')
