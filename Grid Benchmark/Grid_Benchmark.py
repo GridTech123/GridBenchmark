@@ -31,8 +31,7 @@ green2 = (0, 153, 0)
 green3 = (0,100,0)
 gray = (158, 156, 166)
 gray2 = (69, 67, 68)
-
-#images
+gray3 = (59, 57, 58)
 
 #setup
 clock = pygame.time.Clock()
@@ -45,10 +44,13 @@ backgroundColor3 = 201
 benchmarks = []
 updates = 0
 currentBenchmark = 0
+moreTab = False
 
 #images
 left = pygame.image.load('left.png')
 right = pygame.image.load('right.png')
+more = pygame.image.load('more.png')
+more2 = pygame.image.load('more2.png')
 
 #pygame start
 try:
@@ -196,5 +198,34 @@ while True:
             os.chdir('..')
             update = False
             
+    if moreTab == False:
+        screen.blit(more, (sx - 100, 10))
+        if mx > sx - 100 and mx < sx - 100 + 90 and my > 10 and my < 10 + 90:
+            if event.type == MOUSEBUTTONDOWN and event.button == 1:
+                moreTab = True
+                pygame.time.delay(100)
+    elif moreTab == True:
+        pygame.draw.rect(screen, gray3, [sx - 400, 0, sx - 400, 100 + len(benchmarks) * 70])
+        tabClock = 0
+        while tabClock < len(benchmarks):
+            if mx > sx - 400 and mx < sx and my > 75 + tabClock * 70 and my < 75 + tabClock * 70 + 60:
+                pygame.draw.rect(screen, gray, [sx - 400, 75 + tabClock * 70, sx - 400, 60])
+                if event.type == MOUSEBUTTONDOWN and event.button == 1:
+                    currentBenchmark = tabClock
+                    os.chdir('..')
+                    os.chdir('..')
+                    rendermode = 'loading'
+                    moreTab = False
+            else:
+                pygame.draw.rect(screen, gray2, [sx - 400, 75 + tabClock * 70, sx - 400, 60])
+            screen.blit(menu_font.render(str(benchmarks[tabClock]), True, white), (sx - 400, 100 + tabClock * 70))
+            tabClock = tabClock + 1
+        screen.blit(more2, (sx - 100, 10))
+        if mx > sx - 100 and mx < sx - 100 + 90 and my > 10 and my < 10 + 90:
+            if event.type == MOUSEBUTTONDOWN and event.button == 1:
+                moreTab = False
+                pygame.time.delay(100)
+
+
 
     pygame.display.update()
