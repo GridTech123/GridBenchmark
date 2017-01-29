@@ -307,6 +307,22 @@ while True:
             frames = frames + 1
             if frames > 500:
                 gbAPI.calculate(fps)
+                if gbAPI.returnFPS(fps) > 50:
+                    pickle_out = open('ingame.sav', 'w')
+                    pickle.dump('good', pickle_out)
+                    pickle_out.close()
+                elif gbAPI.returnFPS(fps) > 35:
+                    pickle_out = open('ingame.sav', 'w')
+                    pickle.dump('ok', pickle_out)
+                    pickle_out.close()
+                elif gbAPI.returnFPS(fps) > 60:
+                    pickle_out = open('ingame.sav', 'w')
+                    pickle.dump('great', pickle_out)
+                    pickle_out.close()
+                else:
+                    pickle_out = open('ingame.sav', 'w')
+                    pickle.dump('bad', pickle_out)
+                    pickle_out.close()
                 pickle_out = open('update.run', 'w')
                 pickle.dump(True, pickle_out)
                 pickle_out.close()
@@ -315,6 +331,7 @@ while True:
 
     if currentTest == 'calculate 1':
         gbAPI.calculate(fps)
+        print gbAPI.returnFPS
         pickle_out = open('update.run', 'w')
         pickle.dump(True, pickle_out)
         pickle_out.close()

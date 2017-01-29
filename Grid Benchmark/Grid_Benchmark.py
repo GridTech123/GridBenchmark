@@ -141,6 +141,11 @@ while True:
             last = pickle.load(pickle_in)      
         except:
             last = '--'
+        try:
+            pickle_in = open('ingame.sav', 'r')
+            ingame = pickle.load(pickle_in)      
+        except:
+            ingame = '--'
         rendermode = 'menu'
 
     if rendermode == 'menu':
@@ -160,6 +165,7 @@ while True:
         screen.blit(big_font.render('RUN', True, blue2), ((sx / 2) - 75, 600))
         screen.blit(menu_font.render('Last Run: '+str(last)+str(' fps'), True, blue3), (210, 720))       
         screen.blit(menu_font.render('Best Run: '+str(best)+str(' fps'), True, blue3), (210, 750)) 
+        screen.blit(menu_font.render('in game: '+str(ingame), True, blue3), (700, 720)) 
    
         screen.blit(left, (sx - 200, sy / 2 - 45))
         if mx > sx - 200 and mx < sx - 200 + 90 and my > sy / 2 - 45 and my < sy / 2 - 45 + 90:

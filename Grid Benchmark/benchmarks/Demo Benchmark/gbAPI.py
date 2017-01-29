@@ -38,6 +38,7 @@ def calculate(fps):
                 avgClock = avgClock + 1
         except:
             drawObjectFps = drawObjectFps/len(fps)
+            return drawObjectFps
             pickle_out = open('last.sav', 'w')
             pickle.dump(drawObjectFps, pickle_out)
             pickle_out.close()
@@ -51,4 +52,15 @@ def calculate(fps):
             except:
                 pickle_out = open('best.sav', 'w')
                 pickle.dump(drawObjectFps, pickle_out)
-                pickle_out.close()              
+                pickle_out.close()    
+
+def returnFPS(fps):
+    avgClock = 0
+    drawObjectFps = 0
+    try:
+        while True:
+            drawObjectFps = drawObjectFps + fps[avgClock]
+            avgClock = avgClock + 1
+    except:
+        drawObjectFps = drawObjectFps/len(fps)
+        return drawObjectFps     
